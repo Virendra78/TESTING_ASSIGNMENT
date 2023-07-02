@@ -1,0 +1,151 @@
+Ques A. Testing assignment. Go through the Internshala website. Thoroughly analyze the website (form, button, animations, etc.) Submit a document with following details: a. What features work well in Internshala? you find?
+
+b. What features do not work well in Internshala? What can be done to
+
+make this better? c. What bugs/ issues / problems did
+
+This document should be as detailed as possible, and include screenshots.
+
+Solution: a.  The Job and Internship Search: 
+
+User-friendly Interface: Internshala has a clean and intuitive user interface that makes it easy for users to navigate the website and access the desired information. The website's design and layout contribute to a positive user experience.
+
+Although it gives sometimes wrong consideration so we have to ore work on their suggestion algorithm.
+b. What features do not work well in Internshala? What can be done to
+
+make this better?
+ Its consideration system is not appropriate and I think they have to improve their suggestion algorithm.
+
+c. What bugs/ issues / problems did
+
+Their endless col d emailing system is the big issues that I ever faced.
+
+
+
+
+QUES B. Testing assignment
+
+A mobile app has the following product specifications:
+
+1. Allows users to Login via Email,
+
+Password
+
+2. Allows user to register an account
+
+3. Allow users to link their social media accounts 4. Allow users to post stories
+
+5. Allow people to like or comment
+
+on stories
+
+What test cases will you run on this app? Think outside the box. Your job is to break the app. What will you do identify hidden bugs?
+
+ANWER : When testing the mobile app, you can perform various test cases to identify potential bugs and break the app. Here are some test cases that can help we to  uncover hidden bugs:
+
+Login Functionality:
+a. Verify that a user can successfully log in with a valid email and password.
+b. Verify that a user cannot log in with an invalid email or password.
+c. Test the behavior when the user enters incorrect credentials multiple times.
+d. Test the behavior when the user enters a valid email but an incorrect password.
+e. Check if the app handles special characters and spaces in the email and password fields correctly.
+
+Registration Functionality:
+a. Test the registration process with valid input and ensure the user can create an account successfully.
+b. Verify that the app handles duplicate email addresses during registration.
+c. Test the behavior when the user enters invalid or incomplete information during registration.
+d. Check if the app validates the email format correctly.
+e. Test the app's response when the registration process fails due to an unexpected error.
+
+Social Media Account Linking:
+a. Test the functionality to link various social media accounts (e.g., Facebook, Twitter, Instagram) and ensure the linking process works correctly.
+b. Verify that the app handles cases where the user tries to link an already linked social media account.
+c. Test the behavior when the app encounters connection issues or API errors during the linking process.
+d. Verify that the app provides appropriate error messages when the linking process fails.
+
+Story Posting:
+a. Test the ability to create and post a story with valid content.
+b. Verify that the app handles various types of content (text, images, videos) correctly.
+c. Test the behavior when the user tries to post a story without entering any content.
+d. Verify that the app restricts the maximum length of the story and handles exceeding it gracefully.
+e. Check if the app handles special characters and emojis in the story content appropriately.
+
+Like and Comment Functionality:
+a. Test the ability to like a story and verify that the like count increments correctly.
+b. Test the ability to unlike a story and ensure the like count decrements accordingly.
+c. Verify that the app displays the correct number of likes and comments for each story.
+d. Test the behavior when the user tries to like or comment on a story that no longer exists or has been deleted.
+
+Security and Error Handling:
+a. Test the app's behavior when the user tries to perform actions without being logged in.
+b. Verify that the app handles network connectivity issues gracefully and provides appropriate error messages.
+c. Test the app's response to various edge cases, such as extremely long email or password inputs.
+d. Check if the app handles session timeouts and displays the appropriate messages when required.
+
+These test cases cover a range of functionalities and scenarios to help you uncover hidden bugs and ensure the app works as expected under different circumstances.
+
+
+
+QUES C. C. Selenium assignment Use Selenium and Chrome to do the
+
+following
+
+1. Go to "https://amazon.in"
+
+2. Search for:
+
+Search: "Wrist Watches"
+
+Display: "Analogue" Brands Material: "Leather"
+
+Brand: "Titan"
+
+Discount: "25% Off or more" 3. Get the Fifth Element from the search
+
+ANSWER: Certainly! Here's an example of how you can use Selenium and Chrome WebDriver in Python to perform the tasks you mentioned:
+
+python
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+
+# Set up Chrome options
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Uncomment this line if you want to run the script in headless mode
+
+# Set path to chromedriver executable
+webdriver_service = Service('path_to_chromedriver_executable')
+
+# Choose Chrome Browser
+driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
+
+# Go to Amazon website
+driver.get('https://amazon.in')
+
+# Find the search bar and enter the search query
+search_input = driver.find_element(By.ID, 'twotabsearchtextbox')
+search_input.send_keys('Wrist Watches', Keys.RETURN)
+
+# Apply filters for Brand, Material, and Discount
+driver.find_element(By.XPATH, "//span[contains(text(), 'Brand')]/../following-sibling::ul//span[contains(text(), 'Titan')]/preceding-sibling::input").click()
+driver.find_element(By.XPATH, "//span[contains(text(), 'Material Type')]/../following-sibling::ul//span[contains(text(), 'Leather')]/preceding-sibling::input").click()
+driver.find_element(By.XPATH, "//span[contains(text(), 'Discount')]/../following-sibling::ul//span[contains(text(), '25% Off or more')]/preceding-sibling::input").click()
+
+# Wait for search results to load
+driver.implicitly_wait(10)
+
+# Get the fifth element from the search results
+search_results = driver.find_elements(By.XPATH, "//div[@data-component-type='s-search-result']")
+if len(search_results) >= 5:
+    fifth_element = search_results[4].text
+    print(fifth_element)
+else:
+    print("Not enough search results")
+
+# Quit the browser
+driver.quit()
+Make sure to replace 'path_to_chromedriver_executable' with the actual path to the ChromeDriver executable file on your machine. Also, ensure that you have installed Selenium and have the ChromeDriver executable in the specified path.
+
+This script will open the Amazon website, search for "Wrist Watches" with the specified filters, and retrieve the text of the fifth search result. You can modify the code as per your requirements and perform additional actions using Selenium to interact with the webpage elements.
